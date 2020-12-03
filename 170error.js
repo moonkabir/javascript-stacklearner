@@ -45,16 +45,40 @@
 //     console.log(e.message)
 // }
 
-// -----174 finally block
+// -----174+175 finally block
 
 
-try {
-    console.log('I am Line 1')
-    // throw new Error('I am Your Error')
-    console.log('I am Line 2')
-    console.log('I am Line 3')
-} catch (e) {
-    console.log(e.message)
-}finally{
-    console.log('I am Finally Error')
-}
+// try {
+//     console.log('I am Line 1')
+//     // throw new Error('I am Your Error')
+//     console.log('I am Line 2')
+//     console.log('I am Line 3')
+// } catch (e) {
+//     console.log(e.message)
+// }finally{
+//     console.log('I am Finally Error')
+// }
+
+// ----176 error custom
+
+// class CustomError extends Error{
+//     constructor(msg){
+//         super(msg)
+
+//         if(Error.captureStackTrace){
+//             Error.captureStackTrace(this, CustomError)
+//         }
+//     }
+// }
+
+
+// try {
+//     console.log('I am Line 1')
+//     throw new Error('I am Your Error')
+//     console.log('I am Line 2')
+//     console.log('I am Line 3')
+// } catch (e) {
+//     console.log(e.message)
+// }finally{
+//     console.log('I am Finally Error')
+// }
