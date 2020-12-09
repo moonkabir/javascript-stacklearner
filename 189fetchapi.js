@@ -45,3 +45,33 @@
 //     .catch(e =>{
 //         console.log(e)
 //     })
+
+//----------- 190 promise api
+
+// const delay = s =>new Promise(resolve => setTimeout(resolve,s*1000))
+//  delay(2).then(() =>console.log('2 Second Delay'))
+//  delay(1).then(() =>console.log('1 Second Delay'))
+//  delay(2).then(() =>console.log('2 Second Delay'))
+//  delay(3).then(() =>console.log('3 Second Delay'))
+//  delay(5).then(() =>console.log('5 Second Delay'))
+
+
+// sob resolve hoye output dibe,rejected hoile konoi output asbe na
+
+let p1 = new Promise(resolve => {
+    setTimeout(resolve, 3000,'One')
+})
+let p2 = new Promise(resolve => {
+    setTimeout(resolve, 5000,'Two')
+})
+let p3 = new Promise(resolve => {
+    setTimeout(resolve, 2000,'Three')
+})
+
+let promiseArr = [p1, p2, p3]
+
+Promise.all(promiseArr)
+    .then(arr =>console.log(arr))
+
+Promise.race(promiseArr)
+    .then(v => console.log(v))
