@@ -58,20 +58,96 @@
 
 // sob resolve hoye output dibe,rejected hoile konoi output asbe na
 
-let p1 = new Promise(resolve => {
-    setTimeout(resolve, 3000,'One')
-})
-let p2 = new Promise(resolve => {
-    setTimeout(resolve, 5000,'Two')
-})
-let p3 = new Promise(resolve => {
-    setTimeout(resolve, 2000,'Three')
-})
+// let p1 = new Promise(resolve => {
+//     setTimeout(resolve, 3000,'One')
+// })
+// let p2 = new Promise(resolve => {
+//     setTimeout(resolve, 5000,'Two')
+// })
+// let p3 = new Promise(resolve => {
+//     setTimeout(resolve, 2000,'Three')
+// })
 
-let promiseArr = [p1, p2, p3]
+// let promiseArr = [p1, p2, p3]
 
-Promise.all(promiseArr)
-    .then(arr =>console.log(arr))
+// Promise.all(promiseArr)
+//     .then(arr =>console.log(arr))
 
-Promise.race(promiseArr)
-    .then(v => console.log(v))
+// Promise.race(promiseArr)
+//     .then(v => console.log(v))
+
+// ----------------191 async await 
+
+// async function test(){
+//     return 'Test'
+// }
+// test().then(v =>alert(v))
+
+
+// let p1 = new Promise(resolve =>{
+//     setTimeout(resolve,5000,'I am a Promise')
+// })
+
+// async function myAsyncFunction(){
+//     let v = await p1
+//     console.log(v)
+// }
+
+// myAsyncFunction()
+
+// async function fetchData() { 
+//     try {
+//         let res = await fetch('http://jsonplaceholder.typicode.com/users')
+//         let data = await res.json()
+//         // console.log(data)
+//         let names = data.map(u => u.name)
+//         console.log(names)
+//     }
+//     catch(e) { 
+//         console.log(e.message) 
+//     }
+// }
+// fetchData()
+
+// promise arr
+
+// let promises = [Promise.resolve(1), Promise.resolve(2), Promise.resolve(3)];
+// async function promiseall(){
+//     let result = await Promise.all(promises)
+//     console.log(result)
+// }
+// promiseall()
+
+// --------192 async iterator
+
+let asyncIterable ={
+    [Symbol.asyncIterator](){
+        let i = 0;
+        return{
+            next(){
+                if(i<5){
+                    return Promise.resolve({
+                        vlaue: i++,
+                        done: false
+                    })
+                }else{
+                    return Promise.resolve({
+                        done: true
+                    })
+                }
+            }
+        }
+    }
+}
+
+let iterate = asyncIterable[Symbol.asyncIterator]();
+(async function (){
+    // let v = await iterate.next()
+    // console.log(v)
+    console.log(await iterate.next())
+    console.log(await iterate.next())
+    console.log(await iterate.next())
+    console.log(await iterate.next())
+    console.log(await iterate.next())
+    console.log(await iterate.next())
+})()
