@@ -127,7 +127,7 @@ let asyncIterable ={
             next(){
                 if(i<5){
                     return Promise.resolve({
-                        vlaue: i++,
+                        value: i++,
                         done: false
                     })
                 }else{
@@ -140,14 +140,22 @@ let asyncIterable ={
     }
 }
 
-let iterate = asyncIterable[Symbol.asyncIterator]();
-(async function (){
-    // let v = await iterate.next()
-    // console.log(v)
-    console.log(await iterate.next())
-    console.log(await iterate.next())
-    console.log(await iterate.next())
-    console.log(await iterate.next())
-    console.log(await iterate.next())
-    console.log(await iterate.next())
+let iterate = asyncIterable[Symbol.asyncIterator]()
+// use of iffi
+// ;(async function (){
+//     // let v = await iterate.next()
+//     // console.log(v)
+//     console.log(await iterate.next())
+//     console.log(await iterate.next())
+//     console.log(await iterate.next())
+//     console.log(await iterate.next())
+//     console.log(await iterate.next())
+//     console.log(await iterate.next())
+// })()
+// --------193 for await loop
+
+;(async function (){
+    for await (let v of asyncIterable){
+        console.log(v)
+    }
 })()
