@@ -12,3 +12,63 @@
 // -----200 getElement vs Query selectron
 // getElementBy use korle html collection pawa jay
 // querySelector use korle node list pawa jay
+// -----201 traverse dom tree
+
+// let  list = document.getElementById('IdName')
+// let parent = list.parentElement
+// console.log(parent)
+// let children = list.children
+// console.log(children)
+// console.log(list.previousElementSibling)
+// console.log(list.nextElementSibling)
+// console.log(list.firstElementChild)
+// console.log(list.lastElementChild)
+
+// ----202 throw loop traverse dom
+
+// let listItem = documnet.getElementsByTagName('li')
+// // let listItems = array.from(listItem)
+// // let listItems = array.prototype.slicce.apply(listItem)
+// let listItem = [...listItem] //spread operator
+
+// listItems.forEach((li, ind) =>{
+//     let text = li.innerHTML
+//     li.innerHTML = `(${ind + 1}) ${text}`
+// })
+
+// --------203 create dom elements
+
+// let li = document.createElement(li)
+// li.className = 'class-name'
+// li.setAttribute('attributeName','attributeValue')
+// li.innerHTML = 'innerHTML'
+
+// let list = document.getElementById('list')
+// list.appendChild(li)
+
+
+function createElement(tagName, className, innerHTML){
+    let tag = document.createElement(tagName);
+    tag.innerHTML = innerHTML || ''
+    tag.className = className || ''
+    return tag
+}
+function append(parent, children){
+    children.forEach(child =>parent.appendChild(child))
+}
+
+
+let li = createElement('li', 'class-name', 'four')
+li.setAttribute('attributeName','attributeValue')
+
+let list = document.getElementById('list')
+list.appendChild(li)
+
+let p1 = createElement('p', 'lead', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum vitae porro corrupti nam beatae quo perferendis ipsam maiores nihil optio!')
+
+let p2 = createElement('p', 'lead', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum vitae porro corrupti nam beatae quo perferendis ipsam maiores nihil optio!')
+
+let div =  createElement('div')
+append(div, [p1, p2])
+
+document.getElementsByClassName('container')[0].appendChild(div)
