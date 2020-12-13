@@ -101,3 +101,20 @@ list.appendChild(lastItem)
 // deep clone 
 let lastItem = list.lastElementChild.cloneNode(true)
 list.appendChild(lastItem)
+
+// attribute
+
+console.log('list.attributes')
+console.log(list.getAttributeNames())
+console.log(list.getAttributeNode('class'))
+console.log(list.getAttribute('id'))
+console.log(list.id)
+console.log(list.className)
+console.log(list.classList)
+
+lastItem.id = 'last-item'
+lastItem.setAttribute('id', 'last-item')
+
+let attr = document.createAttribute('title')
+attr.value = 'I am value for attribute'
+lastItem.setAttributeNode(attr)
