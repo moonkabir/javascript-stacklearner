@@ -70,7 +70,7 @@ let p2 = createElement('p', 'lead', 'Lorem ipsum dolor sit amet consectetur adip
 
 let div =  createElement('div')
 append(div, [p1, p2])
-
+// --------204 insert adjecent
 list.insertAdjacentElement('beforeend',div)
 // list.insertAdjacentElement('afterend',div)
 // list.insertAdjacentElement('afterbegin',div)
@@ -78,10 +78,7 @@ list.insertAdjacentElement('beforeend',div)
 
 // document.getElementsByClassName('container')[0].appendChild(div)
 
-
-
-
-// remove and update element
+//-----205 remove and update element
 let firstChild = list.firstElementChild
 
 setTimeout(() =>{
@@ -94,6 +91,8 @@ setTimeout(() =>{
 //     list.lastChild.remove()
 // }, 3000)
 
+
+// ----206 clone node 
 let lastItem = list.lastElementChild.cloneNode()
 lastItem.innerHTML = 'five'
 list.appendChild(lastItem)
@@ -102,7 +101,7 @@ list.appendChild(lastItem)
 let lastItem = list.lastElementChild.cloneNode(true)
 list.appendChild(lastItem)
 
-// attribute
+// -------207 deal with attribute
 
 console.log('list.attributes')
 console.log(list.getAttributeNames())
@@ -118,3 +117,20 @@ lastItem.setAttribute('id', 'last-item')
 let attr = document.createAttribute('title')
 attr.value = 'I am value for attribute'
 lastItem.setAttributeNode(attr)
+
+// ----------208 style dom
+
+// let title = document.getElementById('title')
+// // console.log(title.style)
+// title.style.color = 'red'
+// title.style.fontSize = '40px'
+
+let styleObj = {
+    background:'black',
+    color:'red',
+    fontSize:'40px'
+}
+
+let list = document.getElementById('list');
+[...list.children].forEach(li => Object.assign(li.style, styleObj))
+Object.assign(list.style, styleObj)
