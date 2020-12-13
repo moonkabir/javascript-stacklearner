@@ -71,4 +71,11 @@ let p2 = createElement('p', 'lead', 'Lorem ipsum dolor sit amet consectetur adip
 let div =  createElement('div')
 append(div, [p1, p2])
 
-document.getElementsByClassName('container')[0].appendChild(div)
+list.insertAdjacentElement('beforeend',div)
+// list.insertAdjacentElement('afterend',div)
+// list.insertAdjacentElement('afterbegin',div)
+// list.insertAdjacentElement('beforebegin',div)
+
+// document.getElementsByClassName('container')[0].appendChild(div)
+
+ 
