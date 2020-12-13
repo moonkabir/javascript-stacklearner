@@ -87,8 +87,17 @@ let firstChild = list.firstElementChild
 setTimeout(() =>{
     firstChild.innerHTML = firstChild.innerHTML + '(Modified)'
     firstChild.classList.add('text-success')
+    firstChild.style.background = 'black'
 }, 5000)
 
-setTimeout(() =>{
-    list.lastChild.remove()
-}, 3000)
+// setTimeout(() =>{
+//     list.lastChild.remove()
+// }, 3000)
+
+let lastItem = list.lastElementChild.cloneNode()
+lastItem.innerHTML = 'five'
+list.appendChild(lastItem)
+
+// deep clone 
+let lastItem = list.lastElementChild.cloneNode(true)
+list.appendChild(lastItem)
