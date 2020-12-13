@@ -78,4 +78,17 @@ list.insertAdjacentElement('beforeend',div)
 
 // document.getElementsByClassName('container')[0].appendChild(div)
 
- 
+
+
+
+// remove and update element
+let firstChild = list.firstElementChild
+
+setTimeout(() =>{
+    firstChild.innerHTML = firstChild.innerHTML + '(Modified)'
+    firstChild.classList.add('text-success')
+}, 5000)
+
+setTimeout(() =>{
+    list.lastChild.remove()
+}, 3000)
