@@ -141,41 +141,53 @@
 
 // -------209 event in dom
 
-let btn = document.getElementById('btn')
+// let btn = document.getElementById('btn')
 
-// btn.onclick = function (e) {
-//     console.log(e)
-// }
+// // btn.onclick = function (e) {
+// //     console.log(e)
+// // }
 
-let list = document.getElementById('list')
+// let list = document.getElementById('list')
 
-btn.addEventListener('click' , function (e) {
-    let item = list.lastElementChild.cloneNode(true)
-    item.innerHTML = 'Newly Created Item'
-    list.appendChild(item)
-})
+// btn.addEventListener('click' , function (e) {
+//     let item = list.lastElementChild.cloneNode(true)
+//     item.innerHTML = 'Newly Created Item'
+//     list.appendChild(item)
+// })
 
-let box = document.getElementById('box')
-box.addEventListener('mousemove', function (e) {
-    // document.getElementById('x-value').innerHTML = e.clientX
-    // document.getElementById('y-value').innerHTML = e.clientY
-    document.getElementById('x-value').innerHTML = e.offsetX
-    document.getElementById('y-value').innerHTML = e.offsetY
-    if(e.offsetX === 50 && e.offsetY){
-        alert('I am In 50-50')
-    }
-})
+// let box = document.getElementById('box')
+// box.addEventListener('mousemove', function (e) {
+//     // document.getElementById('x-value').innerHTML = e.clientX
+//     // document.getElementById('y-value').innerHTML = e.clientY
+//     document.getElementById('x-value').innerHTML = e.offsetX
+//     document.getElementById('y-value').innerHTML = e.offsetY
+//     if(e.offsetX === 50 && e.offsetY){
+//         alert('I am In 50-50')
+//     }
+// })
 
-// -------210 event deligation issue
+// // -------210 event deligation issue
 
-// ;[...list.children].forEach(li =>{
-//     li.onClick = function(e) {
+// // ;[...list.children].forEach(li =>{
+// //     li.onClick = function(e) {
+// //         e.target.remove()
+// //     }
+// // })
+
+// list.addEventListener('click', function(e) {
+//     if(this.contains(e.target)){
 //         e.target.remove()
 //     }
 // })
 
-list.addEventListener('click', function(e) {
-    if(this.contains(e.target)){
-        e.target.remove()
+// ---------211 input box
+
+let username = document.getElementById('name')
+username.addEventListener('keypress',function(event){
+    if(event.key === 'Enter'){
+        // console.log(event.target.value)
+        document.getElementById('showName').innerHTML = `Your name is ${event.target.value}`
+        // alert(document.getElementById('showName').innerHTML = `Your name is ${event.target.value}`)
+        event.target.value = ''
     }
 })
