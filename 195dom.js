@@ -147,6 +147,8 @@ let btn = document.getElementById('btn')
 //     console.log(e)
 // }
 
+let list = document.getElementById('list')
+
 btn.addEventListener('click' , function (e) {
     let item = list.lastElementChild.cloneNode(true)
     item.innerHTML = 'Newly Created Item'
@@ -161,5 +163,19 @@ box.addEventListener('mousemove', function (e) {
     document.getElementById('y-value').innerHTML = e.offsetY
     if(e.offsetX === 50 && e.offsetY){
         alert('I am In 50-50')
+    }
+})
+
+// -------210 event deligation issue
+
+// ;[...list.children].forEach(li =>{
+//     li.onClick = function(e) {
+//         e.target.remove()
+//     }
+// })
+
+list.addEventListener('click', function(e) {
+    if(this.contains(e.target)){
+        e.target.remove()
     }
 })
