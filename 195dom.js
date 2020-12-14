@@ -47,31 +47,33 @@
 // list.appendChild(li)
 
 
-function createElement(tagName, className, innerHTML){
-    let tag = document.createElement(tagName);
-    tag.innerHTML = innerHTML || ''
-    tag.className = className || ''
-    return tag
-}
-function append(parent, children){
-    children.forEach(child =>parent.appendChild(child))
-}
+// function createElement(tagName, className, innerHTML){
+//     let tag = document.createElement(tagName);
+//     tag.innerHTML = innerHTML || ''
+//     tag.className = className || ''
+//     return tag
+// }
+// function append(parent, children){
+//     children.forEach(child =>parent.appendChild(child))
+// }
 
 
-let li = createElement('li', 'class-name', 'four')
-li.setAttribute('attributeName','attributeValue')
+// let li = createElement('li', 'class-name', 'four')
+// li.setAttribute('attributeName','attributeValue')
 
-let list = document.getElementById('list')
-list.appendChild(li)
+// let list = document.getElementById('list')
+// list.appendChild(li)
 
-let p1 = createElement('p', 'lead', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum vitae porro corrupti nam beatae quo perferendis ipsam maiores nihil optio!')
+// let p1 = createElement('p', 'lead', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum vitae porro corrupti nam beatae quo perferendis ipsam maiores nihil optio!')
 
-let p2 = createElement('p', 'lead', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum vitae porro corrupti nam beatae quo perferendis ipsam maiores nihil optio!')
+// let p2 = createElement('p', 'lead', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum vitae porro corrupti nam beatae quo perferendis ipsam maiores nihil optio!')
 
-let div =  createElement('div')
-append(div, [p1, p2])
+// let div =  createElement('div')
+// append(div, [p1, p2])
+
 // --------204 insert adjecent
-list.insertAdjacentElement('beforeend',div)
+
+// list.insertAdjacentElement('beforeend',div)
 // list.insertAdjacentElement('afterend',div)
 // list.insertAdjacentElement('afterbegin',div)
 // list.insertAdjacentElement('beforebegin',div)
@@ -79,13 +81,14 @@ list.insertAdjacentElement('beforeend',div)
 // document.getElementsByClassName('container')[0].appendChild(div)
 
 //-----205 remove and update element
-let firstChild = list.firstElementChild
 
-setTimeout(() =>{
-    firstChild.innerHTML = firstChild.innerHTML + '(Modified)'
-    firstChild.classList.add('text-success')
-    firstChild.style.background = 'black'
-}, 5000)
+// let firstChild = list.firstElementChild
+
+// setTimeout(() =>{
+//     firstChild.innerHTML = firstChild.innerHTML + '(Modified)'
+//     firstChild.classList.add('text-success')
+//     firstChild.style.background = 'black'
+// }, 5000)
 
 // setTimeout(() =>{
 //     list.lastChild.remove()
@@ -93,30 +96,31 @@ setTimeout(() =>{
 
 
 // ----206 clone node 
-let lastItem = list.lastElementChild.cloneNode()
-lastItem.innerHTML = 'five'
-list.appendChild(lastItem)
 
-// deep clone 
-let lastItem = list.lastElementChild.cloneNode(true)
-list.appendChild(lastItem)
+// let lastItem = list.lastElementChild.cloneNode()
+// lastItem.innerHTML = 'five'
+// list.appendChild(lastItem)
+
+// // deep clone 
+// let lastItem = list.lastElementChild.cloneNode(true)
+// list.appendChild(lastItem)
 
 // -------207 deal with attribute
 
-console.log('list.attributes')
-console.log(list.getAttributeNames())
-console.log(list.getAttributeNode('class'))
-console.log(list.getAttribute('id'))
-console.log(list.id)
-console.log(list.className)
-console.log(list.classList)
+// console.log('list.attributes')
+// console.log(list.getAttributeNames())
+// console.log(list.getAttributeNode('class'))
+// console.log(list.getAttribute('id'))
+// console.log(list.id)
+// console.log(list.className)
+// console.log(list.classList)
 
-lastItem.id = 'last-item'
-lastItem.setAttribute('id', 'last-item')
+// lastItem.id = 'last-item'
+// lastItem.setAttribute('id', 'last-item')
 
-let attr = document.createAttribute('title')
-attr.value = 'I am value for attribute'
-lastItem.setAttributeNode(attr)
+// let attr = document.createAttribute('title')
+// attr.value = 'I am value for attribute'
+// lastItem.setAttributeNode(attr)
 
 // ----------208 style dom
 
@@ -125,12 +129,37 @@ lastItem.setAttributeNode(attr)
 // title.style.color = 'red'
 // title.style.fontSize = '40px'
 
-let styleObj = {
-    background:'black',
-    color:'red',
-    fontSize:'40px'
-}
+// let styleObj = {
+//     background:'black',
+//     color:'red',
+//     fontSize:'40px'
+// }
 
-let list = document.getElementById('list');
-[...list.children].forEach(li => Object.assign(li.style, styleObj))
-Object.assign(list.style, styleObj)
+// let list = document.getElementById('list');
+// [...list.children].forEach(li => Object.assign(li.style, styleObj))
+// Object.assign(list.style, styleObj)
+
+// -------209 event in dom
+
+let btn = document.getElementById('btn')
+
+// btn.onclick = function (e) {
+//     console.log(e)
+// }
+
+btn.addEventListener('click' , function (e) {
+    let item = list.lastElementChild.cloneNode(true)
+    item.innerHTML = 'Newly Created Item'
+    list.appendChild(item)
+})
+
+let box = document.getElementById('box')
+box.addEventListener('mousemove', function (e) {
+    // document.getElementById('x-value').innerHTML = e.clientX
+    // document.getElementById('y-value').innerHTML = e.clientY
+    document.getElementById('x-value').innerHTML = e.offsetX
+    document.getElementById('y-value').innerHTML = e.offsetY
+    if(e.offsetX === 50 && e.offsetY){
+        alert('I am In 50-50')
+    }
+})
