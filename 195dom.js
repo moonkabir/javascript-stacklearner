@@ -313,3 +313,13 @@ function listItemGenerator(item){
     li.innerHTML = `${item.id}. ${item.title} By User Id - ${item.userId}`
     return li
 }
+
+// canvas
+// SVG
+// Drag and Drop
+// Transition
+// Location
+// Audio,video
+// Speech Recognition
+// Web Socket
+// Local Storage, Cookies and Browser Database
