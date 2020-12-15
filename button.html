@@ -9,10 +9,23 @@
     <title>Document</title>
 </head>
 <body>
-    <di class="container" id="cont">
-        <button class="btn btn-primary" id="load" style="margin-top:50px">Load Posts</button>
-        <ul class="list-group" id="posts"></ul>
-    </di>
+    <div class="container" id="cont">
+        <!-- <button class="btn btn-primary" id="load" style="margin-top:50px">Load Posts</button>
+        <ul class="list-group" id="posts"></ul> -->
+        <form id = "post-form">
+            <label><strong>Please Fill the Form</strong></label>
+            <div class="form-group">
+                <lable for="title"> Please Provide a Title</lable>
+                <input type="text" id="title" name="title" placeholder="Enter Title" class="form-control">
+            </div>
+            <div class="form-group">
+                <lable for="body"> Please Provide a Description</lable>
+                <textarea id="body" name="body" id="title" name="title" placeholder="Enter Title" class="form-control" cols="30" rows="10"></textarea>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Submit">
+        </form>
+        <ul class="list-group" id="posts"  style="margin-top:50px"></ul>
+    </div>
     <script type="text/javascript" src="195dom.js"></script>
 </body>
 </html>

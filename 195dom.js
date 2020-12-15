@@ -247,25 +247,69 @@
 
 // -------216 ajax get request
 
-const URL = 'http://jsonplaceholder.typicode.com/posts'
-let load  = document.getElementById('load')
-let postList = document.getElementById('posts')
+// const URL = 'http://jsonplaceholder.typicode.com/posts'
+// let load  = document.getElementById('load')
+// let postList = document.getElementById('posts')
 
-load.addEventListener('click',function(){
-    fetch(URL)
-        .then(response => response.json())
-        .then(posts =>{
-            posts.forEach((post, index) =>{
-                let listItem = listItemGenerator(post, index+1)
-                postList.appendChild(listItem)
-            }) 
+// load.addEventListener('click',function(){
+//     fetch(URL)
+//         .then(response => response.json())
+//         .then(posts =>{
+//             posts.forEach((post, index) =>{
+//                 let listItem = listItemGenerator(post, index+1)
+//                 postList.appendChild(listItem)
+//             }) 
+//         })
+//         .catch(e =>console.log(e.message))
+// })
+
+// function listItemGenerator(item, no){
+//     let li = document.createElement('li')
+//     li.className = 'list-group-item'
+//     li.innerHTML = `${no}. ${item.title}`
+//     return li
+// }
+
+// -------217 AJAX Post Request
+
+let postForm = document.getElementById('post-form')
+let posts = document.getElementById('posts')
+const URL = 'http://jsonplaceholder.typicode.com/posts'
+
+postForm.addEventListener('submit', function(e) {
+    e.preventDefault()
+
+    let title = this.title.value || undefined
+    let body = this.body.value || undefined
+
+    if(title && body) {
+        let postObj = {
+            userId: 100,
+            title,
+            body
+        }
+        fetch(URL, {
+            method:'POST',
+            headers: {
+                'content-type': 'application/JSON'
+            },
+            body:JSON.stringify(postObj)
         })
-        .catch(e =>console.log(e.message))
+            .then(response => response.json())
+            .then(post =>{
+                let item = listItemGenerator(post)
+                posts.appendChild(item)
+                this.reset()
+            })
+            .catch(e => console.log(e.message))
+    }else{
+        alert('Please Provide Every Details')
+    }
 })
 
-function listItemGenerator(item, no){
+function listItemGenerator(item){
     let li = document.createElement('li')
     li.className = 'list-group-item'
-    li.innerHTML = `${no}. ${item.title}`
+    li.innerHTML = `${item.id}. ${item.title} By User Id - ${item.userId}`
     return li
 }
