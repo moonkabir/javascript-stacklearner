@@ -182,64 +182,90 @@
 
 // ---------211 input box
 
-let username = document.getElementById('name')
-username.addEventListener('keypress',function(event){
-    if(event.key === 'Enter'){
-        // console.log(event.target.value)
-        document.getElementById('showName').innerHTML = `Your name is ${event.target.value}`
-        // alert(document.getElementById('showName').innerHTML = `Your name is ${event.target.value}`)
-        event.target.value = ''
-    }
-})
+// let username = document.getElementById('name')
+// username.addEventListener('keypress',function(event){
+//     if(event.key === 'Enter'){
+//         // console.log(event.target.value)
+//         document.getElementById('showName').innerHTML = `Your name is ${event.target.value}`
+//         // alert(document.getElementById('showName').innerHTML = `Your name is ${event.target.value}`)
+//         event.target.value = ''
+//     }
+// })
 
-// --------212 check box event handling
+// // --------212 check box event handling
 
-let skills = document.getElementsByName('skills')
-let result = document.getElementById('result')
-let checkedSkills = []
-;[...skills].forEach(skill=>{
-    skill.addEventListener('change', function(event) {
-        if(event.target.checked){
-            checkedSkills.push(event.target.value)
-            outputSkills(result, checkedSkills)
-        }else{
-            let ind = checkedSkills.indexOf(event.target.value)
-            checkedSkills.splice(ind, 1)
-            outputSkills(result, checkedSkills)
-        }
-    })
-})
+// let skills = document.getElementsByName('skills')
+// let result = document.getElementById('result')
+// let checkedSkills = []
+// ;[...skills].forEach(skill=>{
+//     skill.addEventListener('change', function(event) {
+//         if(event.target.checked){
+//             checkedSkills.push(event.target.value)
+//             outputSkills(result, checkedSkills)
+//         }else{
+//             let ind = checkedSkills.indexOf(event.target.value)
+//             checkedSkills.splice(ind, 1)
+//             outputSkills(result, checkedSkills)
+//         }
+//     })
+// })
 
-function outputSkills(parent, skills){
-    let result = ""
-    skills.forEach((skill,index) => {
-        result += `(${index + 1}) ${skill} `
-    })
-    parent.innerHTML = result
-}
+// function outputSkills(parent, skills){
+//     let result = ""
+//     skills.forEach((skill,index) => {
+//         result += `(${index + 1}) ${skill} `
+//     })
+//     parent.innerHTML = result
+// }
 
-// -------213 list and input event handlers
+// // -------213 list and input event handlers
 
-let list = document.getElementById('list')
-list.addEventListener('dblclick', function(event){
-    if(this.contains(event.target)){
-        let innerText = event.target.innerText
-        event.target.innerHTML = ""
-        let inputBox = createInputBox(innerText)
-        event.target.appendChild(inputBox)
+// let list = document.getElementById('list')
+// list.addEventListener('dblclick', function(event){
+//     if(this.contains(event.target)){
+//         let innerText = event.target.innerText
+//         event.target.innerHTML = ""
+//         let inputBox = createInputBox(innerText)
+//         event.target.appendChild(inputBox)
 
-        inputBox.addEventListener('keypress', function(e){
-            if("Enter" == e.key){
-                event.target.innerHTML = e.target.value
-            }
+//         inputBox.addEventListener('keypress', function(e){
+//             if("Enter" == e.key){
+//                 event.target.innerHTML = e.target.value
+//             }
+//         })
+//     }
+// })
+
+// function createInputBox(value){
+//     let inp = document.createElement('input')
+//     inp.type = 'text'
+//     inp.className = 'form-control'
+//     inp.value = value
+//     return inp
+// }
+
+
+// -------216 ajax get request
+
+const URL = 'http://jsonplaceholder.typicode.com/posts'
+let load  = document.getElementById('load')
+let postList = document.getElementById('posts')
+
+load.addEventListener('click',function(){
+    fetch(URL)
+        .then(response => response.json())
+        .then(posts =>{
+            posts.forEach((post, index) =>{
+                let listItem = listItemGenerator(post, index+1)
+                postList.appendChild(listItem)
+            }) 
         })
-    }
+        .catch(e =>console.log(e.message))
 })
 
-function createInputBox(value){
-    let inp = document.createElement('input')
-    inp.type = 'text'
-    inp.className = 'form-control'
-    inp.value = value
-    return inp
+function listItemGenerator(item, no){
+    let li = document.createElement('li')
+    li.className = 'list-group-item'
+    li.innerHTML = `${no}. ${item.title}`
+    return li
 }
